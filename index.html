@@ -8,12 +8,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary-blue: #2563eb;
-            --dark-blue: #1e40af;
-            --light-blue: #dbeafe;
-            --accent-cyan: #06b6d4;
-            --dark-bg: #0f172a;
-            --light-gray: #f8fafc;
+            --light-cyan: #7ec8e3;
+            --pure-blue: #0000ff;
+            --deep-blue: #000c66;
+            --dark-navy: #050a30;
+            --white: #ffffff;
+            --light-bg: #f0f8ff;
         }
 
         * {
@@ -25,54 +25,60 @@
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             overflow-x: hidden;
+            background: var(--white);
         }
 
         /* Navbar Styles */
         .navbar {
-            background: linear-gradient(135deg, var(--dark-blue) 0%, var(--primary-blue) 100%);
-            padding: 1rem 0;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            background: var(--dark-navy);
+            padding: 1.2rem 0;
+            box-shadow: 0 2px 15px rgba(5, 10, 48, 0.3);
+            transition: all 0.3s;
         }
 
         .navbar-brand {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: white !important;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--light-cyan) !important;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
         .nav-link {
-            color: rgba(255,255,255,0.9) !important;
-            margin: 0 0.5rem;
+            color: var(--white) !important;
+            margin: 0 1rem;
+            font-weight: 500;
+            font-size: 1.05rem;
             transition: all 0.3s;
             position: relative;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .nav-link:hover {
-            color: white !important;
-            transform: translateY(-2px);
+            color: var(--light-cyan) !important;
         }
 
-        .nav-link::after {
+        .nav-link::before {
             content: '';
             position: absolute;
             width: 0;
-            height: 2px;
-            bottom: -5px;
-            left: 50%;
-            background: var(--accent-cyan);
-            transition: all 0.3s;
-            transform: translateX(-50%);
+            height: 3px;
+            bottom: -8px;
+            left: 0;
+            background: var(--light-cyan);
+            transition: width 0.3s;
         }
 
-        .nav-link:hover::after {
-            width: 80%;
+        .nav-link:hover::before {
+            width: 100%;
         }
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, var(--dark-blue) 0%, var(--primary-blue) 50%, var(--accent-cyan) 100%);
-            color: white;
-            padding: 100px 0;
+            background: linear-gradient(135deg, var(--dark-navy) 0%, var(--deep-blue) 50%, var(--pure-blue) 100%);
+            color: var(--white);
+            padding: 120px 0 100px;
             position: relative;
             overflow: hidden;
         }
@@ -80,12 +86,25 @@
         .hero::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 100 0 L 0 0 0 100" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
-            opacity: 0.3;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--light-cyan) 0%, transparent 70%);
+            opacity: 0.1;
+            border-radius: 50%;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--pure-blue) 0%, transparent 70%);
+            opacity: 0.15;
+            border-radius: 50%;
         }
 
         .hero-content {
@@ -94,237 +113,503 @@
         }
 
         .profile-img {
-            width: 250px;
-            height: 250px;
+            width: 280px;
+            height: 280px;
             border-radius: 50%;
-            border: 5px solid white;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border: 8px solid var(--light-cyan);
+            box-shadow: 0 0 40px rgba(126, 200, 227, 0.5), 0 10px 30px rgba(0, 0, 0, 0.3);
             object-fit: cover;
-            animation: float 3s ease-in-out infinite;
+            transition: all 0.5s;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
+        .profile-img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 60px rgba(126, 200, 227, 0.8);
         }
 
         .hero h1 {
-            font-size: 3rem;
-            font-weight: bold;
+            font-size: 3.5rem;
+            font-weight: 800;
             margin-top: 2rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            background: linear-gradient(90deg, var(--white) 0%, var(--light-cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        .hero .lead {
-            font-size: 1.3rem;
+        .hero .subtitle {
+            font-size: 1.8rem;
+            color: var(--light-cyan);
+            font-weight: 600;
             margin: 1rem 0;
         }
 
+        .hero .description {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            margin: 1.5rem 0;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
         .hero .contact-info {
-            margin-top: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .hero .contact-info p {
+            font-size: 1.1rem;
+            margin: 0.8rem 0;
         }
 
         .hero .contact-info i {
-            margin-right: 0.5rem;
-            color: var(--accent-cyan);
+            color: var(--light-cyan);
+            margin-right: 1rem;
+            font-size: 1.2rem;
         }
 
-        .btn-primary-custom {
-            background: white;
-            color: var(--primary-blue);
+        .btn-custom {
+            background: var(--light-cyan);
+            color: var(--dark-navy);
             border: none;
-            padding: 12px 30px;
+            padding: 14px 35px;
             border-radius: 50px;
-            font-weight: bold;
+            font-weight: 700;
+            font-size: 1.05rem;
             transition: all 0.3s;
             margin: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .btn-primary-custom:hover {
+        .btn-custom:hover {
+            background: var(--white);
+            color: var(--pure-blue);
             transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-            background: var(--accent-cyan);
-            color: white;
+            box-shadow: 0 10px 25px rgba(126, 200, 227, 0.4);
+        }
+
+        .btn-outline-custom {
+            background: transparent;
+            color: var(--light-cyan);
+            border: 3px solid var(--light-cyan);
+            padding: 14px 35px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.05rem;
+            transition: all 0.3s;
+            margin: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-outline-custom:hover {
+            background: var(--light-cyan);
+            color: var(--dark-navy);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(126, 200, 227, 0.4);
         }
 
         /* Section Styles */
         section {
-            padding: 80px 0;
+            padding: 90px 0;
         }
 
         .section-title {
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: var(--dark-blue);
-            margin-bottom: 3rem;
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--dark-navy);
+            margin-bottom: 4rem;
             text-align: center;
             position: relative;
-            padding-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
-        .section-title::after {
+        .section-title::before {
             content: '';
             position: absolute;
-            bottom: 0;
+            bottom: -15px;
             left: 50%;
             transform: translateX(-50%);
-            width: 100px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary-blue), var(--accent-cyan));
-            border-radius: 2px;
+            width: 120px;
+            height: 5px;
+            background: linear-gradient(90deg, var(--pure-blue), var(--light-cyan));
+            border-radius: 3px;
+        }
+
+        /* About Section */
+        .about-content {
+            background: linear-gradient(135deg, var(--light-bg) 0%, var(--white) 100%);
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 10px 40px rgba(5, 10, 48, 0.1);
+            border-left: 8px solid var(--light-cyan);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, var(--light-cyan) 0%, transparent 70%);
+            opacity: 0.1;
+            border-radius: 50%;
+        }
+
+        .about-content p {
+            font-size: 1.15rem;
+            line-height: 2;
+            color: var(--deep-blue);
+            position: relative;
+            z-index: 1;
         }
 
         /* Skills Section */
-        .skill-card {
-            background: white;
-            border-radius: 15px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: all 0.3s;
-            border-left: 5px solid var(--primary-blue);
-        }
-
-        .skill-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(37,99,235,0.2);
-        }
-
-        .skill-card h4 {
-            color: var(--primary-blue);
-            font-weight: bold;
-            margin-bottom: 1rem;
-        }
-
-        .skill-tag {
-            display: inline-block;
-            background: var(--light-blue);
-            color: var(--dark-blue);
-            padding: 0.5rem 1rem;
+        .skill-category {
+            background: var(--white);
             border-radius: 20px;
-            margin: 0.3rem;
-            font-size: 0.9rem;
-            transition: all 0.3s;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 30px rgba(0, 0, 255, 0.08);
+            transition: all 0.4s;
+            border-top: 5px solid var(--pure-blue);
+            position: relative;
+            overflow: hidden;
         }
 
-        .skill-tag:hover {
-            background: var(--primary-blue);
-            color: white;
-            transform: scale(1.05);
+        .skill-category::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: linear-gradient(135deg, var(--light-cyan) 0%, var(--pure-blue) 100%);
+            opacity: 0.05;
+            transition: width 0.4s;
+        }
+
+        .skill-category:hover::before {
+            width: 100%;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 50px rgba(0, 0, 255, 0.15);
+            border-top-color: var(--light-cyan);
+        }
+
+        .skill-category h4 {
+            color: var(--dark-navy);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            position: relative;
+        }
+
+        .skill-category h4 i {
+            color: var(--light-cyan);
+            margin-right: 1rem;
+            font-size: 1.6rem;
+        }
+
+        .skill-badge {
+            display: inline-block;
+            background: var(--light-bg);
+            color: var(--deep-blue);
+            padding: 0.7rem 1.3rem;
+            border-radius: 25px;
+            margin: 0.4rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .skill-badge:hover {
+            background: var(--pure-blue);
+            color: var(--white);
+            transform: translateY(-3px);
+            border-color: var(--light-cyan);
         }
 
         /* Experience Section */
-        .experience-card {
-            background: linear-gradient(135deg, var(--light-blue) 0%, white 100%);
-            border-radius: 15px;
+        .experience-wrapper {
+            background: var(--white);
+            border-radius: 25px;
+            padding: 3rem;
+            box-shadow: 0 10px 40px rgba(5, 10, 48, 0.12);
+            border: 3px solid var(--light-cyan);
+        }
+
+        .company-header {
+            background: linear-gradient(135deg, var(--dark-navy) 0%, var(--deep-blue) 100%);
+            color: var(--white);
             padding: 2rem;
+            border-radius: 15px;
             margin-bottom: 2rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            border-left: 5px solid var(--accent-cyan);
         }
 
         .company-name {
-            color: var(--primary-blue);
-            font-size: 1.5rem;
-            font-weight: bold;
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--light-cyan);
+            margin-bottom: 0.5rem;
         }
 
-        .role-badge {
-            background: var(--primary-blue);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
+        .role-info {
+            margin-top: 1rem;
+        }
+
+        .badge-custom {
+            background: var(--light-cyan);
+            color: var(--dark-navy);
+            padding: 0.6rem 1.5rem;
+            border-radius: 25px;
             display: inline-block;
-            margin: 1rem 0;
+            margin: 0.3rem;
+            font-weight: 700;
+            font-size: 1rem;
         }
 
-        .project-card {
-            background: white;
-            border-radius: 10px;
-            padding: 1.5rem;
-            margin: 1rem 0;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        .project-item {
+            background: linear-gradient(135deg, var(--light-bg) 0%, var(--white) 100%);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 255, 0.08);
             transition: all 0.3s;
+            border-left: 6px solid var(--pure-blue);
         }
 
-        .project-card:hover {
-            transform: translateX(10px);
-            box-shadow: 0 5px 20px rgba(6,182,212,0.2);
+        .project-item:hover {
+            transform: translateX(15px);
+            box-shadow: 0 8px 30px rgba(126, 200, 227, 0.2);
+            border-left-color: var(--light-cyan);
         }
 
-        .project-title {
-            color: var(--dark-blue);
-            font-weight: bold;
-            font-size: 1.2rem;
+        .project-name {
+            color: var(--dark-navy);
+            font-weight: 800;
+            font-size: 1.4rem;
             margin-bottom: 1rem;
         }
 
-        .tech-stack {
-            background: var(--light-blue);
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
+        .project-name i {
+            color: var(--light-cyan);
+            margin-right: 0.8rem;
+        }
+
+        .project-item ul {
+            color: var(--deep-blue);
+            line-height: 1.9;
+        }
+
+        .tech-label {
+            background: var(--deep-blue);
+            color: var(--light-cyan);
+            padding: 0.8rem 1.5rem;
+            border-radius: 10px;
             margin-top: 1rem;
-            font-size: 0.9rem;
-            color: var(--dark-blue);
+            display: inline-block;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .responsibilities {
+            background: var(--light-bg);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-top: 2rem;
+            border: 3px solid var(--light-cyan);
+        }
+
+        .responsibilities h5 {
+            color: var(--dark-navy);
+            font-weight: 800;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .responsibilities ul {
+            color: var(--deep-blue);
+            line-height: 2;
         }
 
         /* Education Section */
-        .education-card {
-            background: white;
-            border-radius: 15px;
-            padding: 2rem;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            border-top: 5px solid var(--accent-cyan);
-            transition: all 0.3s;
-        }
-
-        .education-card:hover {
-            transform: scale(1.02);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-        }
-
-        .degree {
-            color: var(--primary-blue);
-            font-size: 1.3rem;
-            font-weight: bold;
-        }
-
-        .percentage {
-            background: var(--primary-blue);
-            color: white;
-            padding: 0.3rem 0.8rem;
+        .education-item {
+            background: var(--white);
             border-radius: 20px;
-            font-weight: bold;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 30px rgba(0, 0, 255, 0.1);
+            border: 3px solid var(--light-cyan);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .education-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 200px;
+            height: 200px;
+            background: var(--light-cyan);
+            opacity: 0.05;
+            border-radius: 50%;
+            transform: translate(50%, -50%);
+        }
+
+        .education-item:hover {
+            transform: scale(1.03);
+            box-shadow: 0 12px 40px rgba(126, 200, 227, 0.2);
+        }
+
+        .degree-title {
+            color: var(--dark-navy);
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 0.8rem;
+        }
+
+        .college-info {
+            color: var(--deep-blue);
+            font-size: 1.1rem;
+            margin: 0.5rem 0;
+        }
+
+        .percentage-badge {
+            background: linear-gradient(135deg, var(--pure-blue) 0%, var(--light-cyan) 100%);
+            color: var(--white);
+            padding: 0.6rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+
+        /* Certifications Section */
+        .cert-card {
+            background: linear-gradient(135deg, var(--light-bg) 0%, var(--white) 100%);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 8px 30px rgba(5, 10, 48, 0.1);
+            border-left: 8px solid var(--pure-blue);
+            height: 100%;
+        }
+
+        .cert-card h4 {
+            color: var(--dark-navy);
+            font-weight: 800;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cert-card h4 i {
+            color: var(--light-cyan);
+            margin-right: 1rem;
+        }
+
+        .cert-card ul {
+            color: var(--deep-blue);
+            line-height: 2;
+            font-size: 1.05rem;
+        }
+
+        /* Contact Section */
+        .contact-box {
+            background: linear-gradient(135deg, var(--dark-navy) 0%, var(--deep-blue) 100%);
+            border-radius: 25px;
+            padding: 4rem;
+            box-shadow: 0 15px 50px rgba(0, 0, 255, 0.2);
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-box::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, var(--light-cyan) 0%, transparent 70%);
+            opacity: 0.1;
+            border-radius: 50%;
+        }
+
+        .contact-box h4 {
+            color: var(--light-cyan);
+            font-weight: 800;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .contact-box p {
+            font-size: 1.15rem;
+            line-height: 1.9;
+            position: relative;
+        }
+
+        .contact-box i {
+            color: var(--light-cyan);
+            margin-right: 1rem;
+            font-size: 1.3rem;
         }
 
         /* Footer */
         footer {
-            background: linear-gradient(135deg, var(--dark-bg) 0%, var(--dark-blue) 100%);
-            color: white;
-            padding: 3rem 0 1rem;
+            background: var(--dark-navy);
+            color: var(--white);
+            padding: 3rem 0 1.5rem;
         }
 
         .social-links a {
-            color: white;
-            font-size: 1.5rem;
-            margin: 0 1rem;
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            background: var(--deep-blue);
+            color: var(--light-cyan);
+            border-radius: 50%;
+            margin: 0 0.7rem;
             transition: all 0.3s;
+            font-size: 1.3rem;
         }
 
         .social-links a:hover {
-            color: var(--accent-cyan);
+            background: var(--light-cyan);
+            color: var(--dark-navy);
             transform: translateY(-5px);
         }
 
-        /* Animations */
-        .fade-in {
-            animation: fadeIn 1s ease-in;
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.8s ease-out;
         }
     </style>
 </head>
@@ -339,6 +624,7 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
                     <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
                     <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
                     <li class="nav-item"><a class="nav-link" href="#education">Education</a></li>
@@ -352,21 +638,23 @@
     <section id="home" class="hero">
         <div class="container hero-content">
             <div class="row align-items-center">
-                <div class="col-md-4 text-center">
-                    <img src="pimage.jpeg" alt="Nishanth K" class="profile-img">
+                <div class="col-lg-4 col-md-12 text-center mb-4 mb-lg-0">
+                    <img src="https://via.placeholder.com/280" alt="Nishanth K" class="profile-img fade-in">
                 </div>
-                <div class="col-md-8">
+                <div class="col-lg-8 col-md-12">
                     <h1 class="fade-in">Nishanth K</h1>
-                    <p class="lead fade-in">.NET Full Stack Developer</p>
-                    <p class="fade-in">2+ years of experience building enterprise-level applications with .NET, SQL, and modern web technologies</p>
+                    <p class="subtitle fade-in">.NET Full Stack Developer</p>
+                    <p class="description fade-in">
+                        2+ years of experience building enterprise-level applications with .NET, SQL, and modern web technologies. Specialized in CRM, Payroll, Logistics, and E-commerce solutions.
+                    </p>
                     <div class="contact-info fade-in">
                         <p><i class="fas fa-map-marker-alt"></i> Bangalore, India</p>
                         <p><i class="fas fa-envelope"></i> nishanthnive22@gmail.com</p>
                         <p><i class="fas fa-phone"></i> +91 9353884751</p>
                     </div>
-                    <div class="mt-4">
-                        <a href="#contact" class="btn-primary-custom">Get In Touch</a>
-                        <a href="#experience" class="btn-primary-custom">View Projects</a>
+                    <div class="mt-4 fade-in">
+                        <a href="#contact" class="btn-custom">Hire Me</a>
+                        <a href="#experience" class="btn-outline-custom">View Work</a>
                     </div>
                 </div>
             </div>
@@ -374,71 +662,67 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" style="background: var(--light-gray);">
+    <section id="about">
         <div class="container">
             <h2 class="section-title">About Me</h2>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="skill-card">
-                        <p style="font-size: 1.1rem; line-height: 1.8; color: #334155;">
-                            Full Stack Developer with 2+ years of professional experience in designing, developing, and deploying enterprise-level applications. Skilled in .NET technologies, SQL, DevExpress, and API development, with proven expertise in building CRM, payroll, accounting, logistics, and e-commerce systems. Adept at collaborating with cross-functional teams, optimizing database operations, and integrating mobile applications. Currently expanding knowledge in .NET MAUI for cross-platform mobile app development.
-                        </p>
-                    </div>
-                </div>
+            <div class="about-content">
+                <p>
+                    Full Stack Developer with 2+ years of professional experience in designing, developing, and deploying enterprise-level applications. Skilled in .NET technologies, SQL, DevExpress, and API development, with proven expertise in building CRM, payroll, accounting, logistics, and e-commerce systems. Adept at collaborating with cross-functional teams, optimizing database operations, and integrating mobile applications. Currently expanding knowledge in .NET MAUI for cross-platform mobile app development. Seeking opportunities to contribute technical expertise and deliver scalable solutions in a dynamic IT environment.
+                </p>
             </div>
         </div>
     </section>
 
     <!-- Skills Section -->
-    <section id="skills">
+    <section id="skills" style="background: var(--light-bg);">
         <div class="container">
             <h2 class="section-title">Technical Skills</h2>
             <div class="row">
-                <div class="col-md-6">
-                    <div class="skill-card">
+                <div class="col-lg-6 col-md-12">
+                    <div class="skill-category">
                         <h4><i class="fas fa-code"></i> Programming Languages</h4>
-                        <span class="skill-tag">C</span>
-                        <span class="skill-tag">C++</span>
-                        <span class="skill-tag">Java</span>
-                        <span class="skill-tag">VB.NET</span>
-                        <span class="skill-tag">C#</span>
-                        <span class="skill-tag">Python</span>
+                        <span class="skill-badge">C</span>
+                        <span class="skill-badge">C++</span>
+                        <span class="skill-badge">Java</span>
+                        <span class="skill-badge">VB.NET</span>
+                        <span class="skill-badge">C#</span>
+                        <span class="skill-badge">Python</span>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="skill-card">
+                <div class="col-lg-6 col-md-12">
+                    <div class="skill-category">
                         <h4><i class="fas fa-layer-group"></i> Frameworks & Tools</h4>
-                        <span class="skill-tag">.NET MVC</span>
-                        <span class="skill-tag">J2EE</span>
-                        <span class="skill-tag">Django</span>
-                        <span class="skill-tag">DevExpress</span>
-                        <span class="skill-tag">Bootstrap 4 & 5</span>
-                        <span class="skill-tag">Power BI</span>
-                        <span class="skill-tag">LaTeX</span>
-                        <span class="skill-tag">.NET MAUI</span>
+                        <span class="skill-badge">.NET MVC</span>
+                        <span class="skill-badge">J2EE</span>
+                        <span class="skill-badge">Django</span>
+                        <span class="skill-badge">DevExpress</span>
+                        <span class="skill-badge">Bootstrap 4 & 5</span>
+                        <span class="skill-badge">Power BI</span>
+                        <span class="skill-badge">LaTeX</span>
+                        <span class="skill-badge">.NET MAUI</span>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="skill-card">
+                <div class="col-lg-6 col-md-12">
+                    <div class="skill-category">
                         <h4><i class="fas fa-database"></i> Databases</h4>
-                        <span class="skill-tag">SQL</span>
-                        <span class="skill-tag">MySQL</span>
-                        <span class="skill-tag">SQLite</span>
-                        <span class="skill-tag">Stored Procedures</span>
-                        <span class="skill-tag">Views</span>
-                        <span class="skill-tag">Functions</span>
-                        <span class="skill-tag">Triggers</span>
+                        <span class="skill-badge">SQL</span>
+                        <span class="skill-badge">MySQL</span>
+                        <span class="skill-badge">SQLite</span>
+                        <span class="skill-badge">Stored Procedures</span>
+                        <span class="skill-badge">Views</span>
+                        <span class="skill-badge">Functions</span>
+                        <span class="skill-badge">Triggers</span>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="skill-card">
+                <div class="col-lg-6 col-md-12">
+                    <div class="skill-category">
                         <h4><i class="fas fa-globe"></i> Web & Mobile Development</h4>
-                        <span class="skill-tag">RESTful APIs</span>
-                        <span class="skill-tag">HTML</span>
-                        <span class="skill-tag">CSS</span>
-                        <span class="skill-tag">JavaScript</span>
-                        <span class="skill-tag">jQuery</span>
-                        <span class="skill-tag">Android/iOS</span>
+                        <span class="skill-badge">RESTful APIs</span>
+                        <span class="skill-badge">HTML</span>
+                        <span class="skill-badge">CSS</span>
+                        <span class="skill-badge">JavaScript</span>
+                        <span class="skill-badge">jQuery</span>
+                        <span class="skill-badge">Android/iOS</span>
                     </div>
                 </div>
             </div>
@@ -446,74 +730,78 @@
     </section>
 
     <!-- Experience Section -->
-    <section id="experience" style="background: var(--light-gray);">
+    <section id="experience">
         <div class="container">
             <h2 class="section-title">Professional Experience</h2>
-            <div class="experience-card">
-                <div class="company-name">Ziac Softwares</div>
-                <p style="color: #64748b;"><i class="fas fa-map-marker-alt"></i> Bangalore, India</p>
-                <span class="role-badge">.NET Full Stack Developer</span>
-                <span class="role-badge" style="background: var(--accent-cyan);">July 2022 - Present</span>
+            <div class="experience-wrapper">
+                <div class="company-header">
+                    <div class="company-name">Ziac Softwares</div>
+                    <p style="margin: 0.5rem 0;"><i class="fas fa-map-marker-alt"></i> Bangalore, India</p>
+                    <div class="role-info">
+                        <span class="badge-custom">.NET Full Stack Developer</span>
+                        <span class="badge-custom">July 2022 - Present</span>
+                    </div>
+                </div>
                 
-                <div class="mt-4">
+                <div class="projects-list">
                     <!-- Divine CRM -->
-                    <div class="project-card">
-                        <div class="project-title"><i class="fas fa-users"></i> Divine CRM</div>
-                        <ul style="color: #475569;">
+                    <div class="project-item">
+                        <div class="project-name"><i class="fas fa-users"></i> Divine CRM</div>
+                        <ul>
                             <li>Designed and developed a CRM application for managing customer lifecycle, leads, and follow-ups</li>
                             <li>Built secure Web APIs for mobile app integration</li>
                             <li>Implemented Bootstrap 4 & 5 with DevExpress for responsive, user-friendly UI</li>
                             <li>Improved efficiency of customer tracking by reducing manual efforts by 30%</li>
                         </ul>
-                        <div class="tech-stack">
+                        <div class="tech-label">
                             <strong>Tech Stack:</strong> .NET C#, MVC, DevExpress, Bootstrap, MySQL
                         </div>
                     </div>
 
                     <!-- Poratz & Poratz Fleet -->
-                    <div class="project-card">
-                        <div class="project-title"><i class="fas fa-truck"></i> Poratz & Poratz Fleet</div>
-                        <ul style="color: #475569;">
+                    <div class="project-item">
+                        <div class="project-name"><i class="fas fa-truck"></i> Poratz & Poratz Fleet</div>
+                        <ul>
                             <li>Developed two interconnected logistics applications sharing a common database for cargo transfer management across India</li>
                             <li>Automated LR number tracking, TDS calculations, and payment management</li>
                             <li>Created mobile APIs for drivers and customers to track consignments</li>
                             <li>Enhanced system scalability, handling 1000+ records daily</li>
                         </ul>
-                        <div class="tech-stack">
+                        <div class="tech-label">
                             <strong>Tech Stack:</strong> VB.NET, .NET C# MVC, DevExpress, Bootstrap, MySQL
                         </div>
                     </div>
 
                     <!-- Ziac Pay -->
-                    <div class="project-card">
-                        <div class="project-title"><i class="fas fa-money-check-alt"></i> Ziac Pay</div>
-                        <ul style="color: #475569;">
+                    <div class="project-item">
+                        <div class="project-name"><i class="fas fa-money-check-alt"></i> Ziac Pay</div>
+                        <ul>
                             <li>Built a Payroll Management System handling employee salaries, wages, and reports</li>
                             <li>Created APIs for integration with mobile apps</li>
                             <li>Automated payroll reports, reducing processing time from 2 days to a few hours</li>
                         </ul>
-                        <div class="tech-stack">
+                        <div class="tech-label">
                             <strong>Tech Stack:</strong> .NET MVC, DevExpress, Bootstrap, SQL
                         </div>
                     </div>
 
                     <!-- CASH -->
-                    <div class="project-card">
-                        <div class="project-title"><i class="fas fa-shopping-cart"></i> CASH (Accounting & E-commerce Platform)</div>
-                        <ul style="color: #475569;">
+                    <div class="project-item">
+                        <div class="project-name"><i class="fas fa-shopping-cart"></i> CASH (Accounting & E-commerce Platform)</div>
+                        <ul>
                             <li>Designed a multi-module accounting system integrated with e-commerce features</li>
                             <li>Developed APIs for mobile applications to support product browsing and transactions</li>
                             <li>Enhanced financial reporting accuracy through SQL Stored Procedures & Views</li>
                         </ul>
-                        <div class="tech-stack">
+                        <div class="tech-label">
                             <strong>Tech Stack:</strong> .NET MVC, DevExpress, Bootstrap, SQL
                         </div>
                     </div>
                 </div>
 
-                <div class="mt-4">
-                    <h5 style="color: var(--primary-blue); font-weight: bold;">Key Responsibilities:</h5>
-                    <ul style="color: #475569;">
+                <div class="responsibilities">
+                    <h5>Key Responsibilities:</h5>
+                    <ul>
                         <li>Full-stack development from UI (Bootstrap/DevExpress) to backend logic (C#, MVC) and database design (SQL/MySQL)</li>
                         <li>Designed and optimized SQL queries, functions, and stored procedures</li>
                         <li>Developed RESTful APIs for mobile applications, ensuring smooth Android/iOS integration</li>
@@ -521,125 +809,3 @@
                         <li>Participated in code reviews and improved application performance by 20-25%</li>
                         <li>Documented development processes and prepared user manuals for client handover</li>
                     </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Education Section -->
-    <section id="education">
-        <div class="container">
-            <h2 class="section-title">Education</h2>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="education-card">
-                        <div class="degree">Bachelor of Computer Applications (BCA)</div>
-                        <p style="color: #64748b; margin: 0.5rem 0;">Surana College | 2019 - 2022</p>
-                        <span class="percentage">79.51%</span>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="education-card">
-                        <div class="degree">PUC (EBAC)</div>
-                        <p style="color: #64748b; margin: 0.5rem 0;">Surana College | 2016 - 2018</p>
-                        <span class="percentage">64.66%</span>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="education-card">
-                        <div class="degree">SSLC</div>
-                        <p style="color: #64748b; margin: 0.5rem 0;">Lilly Rose English High School | 2016</p>
-                        <span class="percentage">76.48%</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Certifications Section -->
-    <section style="background: var(--light-gray);">
-        <div class="container">
-            <h2 class="section-title">Certifications & Achievements</h2>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="skill-card">
-                        <h4><i class="fas fa-certificate"></i> Certifications</h4>
-                        <ul style="color: #475569;">
-                            <li>Web Development using Python-Django</li>
-                            <li>Web Application Development using J2EE</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="skill-card">
-                        <h4><i class="fas fa-trophy"></i> Achievements</h4>
-                        <ul style="color: #475569;">
-                            <li>2nd Prize - Digital Creativity in Linux Competition</li>
-                            <li>Winner - Idea City Competition (Esoteric IT Club)</li>
-                            <li>Winner - Hunt for QR Code Competition (Esoteric IT Club)</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact">
-        <div class="container text-center">
-            <h2 class="section-title">Let's Connect</h2>
-            <div class="skill-card" style="max-width: 600px; margin: 0 auto;">
-                <h4 style="color: var(--primary-blue); margin-bottom: 2rem;">Get In Touch</h4>
-                <p style="font-size: 1.1rem; color: #475569; margin-bottom: 2rem;">
-                    I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
-                </p>
-                <div style="font-size: 1.1rem; color: #334155;">
-                    <p><i class="fas fa-envelope" style="color: var(--primary-blue); margin-right: 1rem;"></i> nishanthnive22@gmail.com</p>
-                    <p><i class="fas fa-phone" style="color: var(--primary-blue); margin-right: 1rem;"></i> +91 9353884751</p>
-                    <p><i class="fas fa-map-marker-alt" style="color: var(--primary-blue); margin-right: 1rem;"></i> Bangalore, India</p>
-                </div>
-                <div style="margin-top: 2rem;">
-                    <p style="color: #64748b;"><strong>Languages:</strong> English, Kannada, Tamil, Hindi</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container text-center">
-            <div class="social-links mb-4">
-                <a href="https://www.linkedin.com/public-profile/settings?trk=d_flagship3_profile_self_view_public_profile" target="_blank"><i class="fab fa-linkedin"></i></a>
-                <a href="#"><i class="fab fa-github"></i></a>
-                 <a href="mailto:nishanthnive22@gmail.com"><i class="fas fa-envelope"></i></a>
-            </div>
-            <p>&copy; 2024 Nishanth K. All Rights Reserved.</p>
-            <p style="font-size: 0.9rem; opacity: 0.8;">Full Stack Developer | .NET Specialist | API Developer</p>
-        </div>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
-        });
-
-        // Navbar background on scroll
-        window.addEventListener('scroll', function() {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
-                navbar.style.boxShadow = '0 4px 12px rgba(0,0,0,0.2)';
-            } else {
-                navbar.style.boxShadow = '0 4px 6px rgba(0,0,0,0.1)';
-            }
-        });
-    </script>
-</body>
-</html>
